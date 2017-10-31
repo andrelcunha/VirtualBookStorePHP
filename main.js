@@ -50,5 +50,5 @@ function setFormContent(bookObj){
     $("#preco_form").val(bookObj.preco);
     $("#quantidade_form").val(bookObj.quantidade);
     $("#tipo_form").val(bookObj.tipo);
-    $("#editoraId").val(bookObj.editoraId);
+    $("#editoraId_form").val(bookObj.editoraId);
 }

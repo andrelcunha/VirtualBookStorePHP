@@ -31,9 +31,7 @@ class select {
     
     
     return $MeuArray;
-   // print_r($linha);
-     //echo $RespostaSelect->rowCount();
-    // return $linha;
+   
     }
     
     public function SelectLivro($id){
@@ -85,13 +83,8 @@ class select {
     
     public function UpdateLivro($id,$titulo,$autor,$ano,$preco,$quantidade,$tipo,$editora_id) {       
         $conDb = new Conexao();
-        $MinhaQuery="UPDATE acervo SET titulo=:titulo,"
-                . "autor=:autor,"
-                . "ano=:ano,"
-                . "preco=:preco,"
-                . "quantidade=:quantidade,"
-                . "tipo=:tipo,"
-                . "editora_id=:editora_id, WHERE id=:id ;";
+        $MinhaQuery="UPDATE acervo SET titulo=:titulo,autor=:autor,ano=:ano,preco=:preco,quantidade=:quantidade,tipo=:tipo,editora_id=:editora_id WHERE id=:id ;";
+    
         $execSql=$conDb->getconexao()->prepare($MinhaQuery);
         $execSql->bindValue(":id", $id);
         $execSql->bindValue(":titulo", $titulo);
@@ -106,20 +99,21 @@ class select {
         return $execSql->rowCount();
     }
     
-    public function SelectJson(){
-        
-        
-        //$ConDb = new Conexao();
-    $MinhaQuery='select * from acervo';
+    
+    
+    public function BuscarTitulo($varTituloBusca){
+              
+    //$ConDb = new Conexao();
+    $MinhaQuery="select * from acervo where titulo like '%".$varTituloBusca."%'";
     //$RespostaSelect=$ConDb->getconexao()->prepare($MinhaQuery);
-    $RespostaSelect= Conexao::getconexao()->prepare($MinhaQuery);
-    $RespostaSelect->execute();
-     $MeuArray=$RespostaSelect->fetchAll(PDO::FETCH_ASSOC);
-     $VarJson = json_encode($MeuArray);
+    $Select= Conexao::getconexao()->prepare($MinhaQuery);
+    $Select->execute();
+     $MeuArray=$Select->fetchAll(PDO::FETCH_ASSOC);
+     
     
     
-    return $VarJson;
-        
+    return $MeuArray;
+   
     }
     
 }

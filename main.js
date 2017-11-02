@@ -22,16 +22,20 @@ function getLineContent(id){
     var line = document.getElementById("tr"+id);
     console.log(line);
     var bookObj = {
-        title: line.childNodes[0].innerText,
-        autor: line.childNodes[1].innerText,
-        ano: line.childNodes[2].innerText,
-        preco: line.childNodes[3].innerText,
-        quantidade: line.childNodes[4].innerText,
-        tipo: line.childNodes[5].innerText,
-        editoraId: line.childNodes[6].innerText
+        id: line.childNodes[0].innerText,
+        title: line.childNodes[1].innerText,
+        autor: line.childNodes[2].innerText,
+        ano: line.childNodes[3].innerText,
+        preco: line.childNodes[4].innerText,
+        quantidade: line.childNodes[5].innerText,
+        tipo: line.childNodes[6].innerText,
+        editoraId: line.childNodes[7].innerText
+        
     };
     return bookObj;
 }
+
+
 
 function loadForm(){
   $("body").load("atualizar.html");
@@ -44,6 +48,7 @@ function createForm(){
 }
 
 function setFormContent(bookObj){
+    $("#id_form").val(bookObj.id);
     $("#titulo_form").val(bookObj.title);
     $("#autor_form").val(bookObj.autor);
     $("#ano_form").val(bookObj.ano);
@@ -51,4 +56,5 @@ function setFormContent(bookObj){
     $("#quantidade_form").val(bookObj.quantidade);
     $("#tipo_form").val(bookObj.tipo);
     $("#editoraId_form").val(bookObj.editoraId);
+    
 }

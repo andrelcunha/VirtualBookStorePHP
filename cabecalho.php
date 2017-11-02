@@ -36,12 +36,10 @@ echo'
       <li class="nav-item">
         <a class="nav-link " href="editora.php">Editoras</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Usuarios</a>
-      </li>
+     
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+    <form class="form-inline my-2 my-lg-0" method="POST" action=buscar.php>
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" name="buscar_form">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>

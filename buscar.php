@@ -9,6 +9,8 @@ and open the template in the editor.
         <?php
         require_once './head.php';
         $varHead = head();
+        
+        $varTituloBusca = $_POST['buscar_form'];
         ?>
         
         <title>Gerenciamento de Livros</title>
@@ -34,6 +36,10 @@ and open the template in the editor.
                 <div class="form-group">
                     <!--<input type="text" class="form-control"    name="id_form">
                     <br>-->
+                    <label class="control-label" for="id_form">Id: </label>
+                    <input class="form-control"  type="text" name="id_form" 
+                           id="id_form" placeholder="Digite o título...">
+                    
 
                     <label class="control-label" for="titulo_form">Título: </label>
                     <input class="form-control"  type="text" name="titulo_form" 
@@ -47,6 +53,11 @@ and open the template in the editor.
                     <label class="control-label" for="preco_form">Preço:</label>
                     <input class="form-control"  type="text" name="preco_form" 
                            id="preco_form" placeholder="R$" size="50">
+                    
+                    <label class="control-label" for="quantidade_form">Quantidade:</label>
+                    <input class="form-control"  type="text" name="quantidade_form" 
+                           id="quantidade_form" placeholder="R$" size="50">
+                    
                     <label class="control-label" for="preco_form">Tipo:</label>
                     <input class="form-control" type="text"
                            placeholder="Informe o Tipo" name="tipo_form" id="tipo_form">
@@ -60,12 +71,12 @@ and open the template in the editor.
             </form>
         </div>
         <div id="div_content">
-            <h2>Todos os Títulos Cadastrados</h2>    
+            <h2>Resultado da Pesquisa de Títulos</h2>    
         
             <table class="table  table-hover">
                 <thead>
                   <tr>
-                    <!--<th scope="col">Id</th>-->
+                    <th scope="col">Id</th>
                     <th scope="col">Titulo</th>
                     <th scope="col">Autor</th>
                     <th scope="col">Ano</th>
@@ -73,18 +84,19 @@ and open the template in the editor.
                     <th scope="col">Quantidade</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Editora Id</th>
-                    <th scope="col">Excluir</th>
+                    
                   </tr>
                 </thead>
   <?php
   
   
   
-  $ArrayFrontEnd = select::SelectAll();
+  $ArrayFrontEnd = select::BuscarTitulo($varTituloBusca);
   foreach ($ArrayFrontEnd as $key=>$item) {
 echo '<tbody>';
-echo    '<tr id="tr'.$key.'" onClick="handleClick('.$key.')">';
-//echo      '<th scope="row">'.$ArrayFrontEnd[$key]["id"].'</th>';
+//echo    '<tr id="tr'.$key.'" onClick="handleClick('.$key.')">';
+echo    '<tr id="tr'.$ArrayFrontEnd[$key]["id"].'" onClick="handleClick('.$ArrayFrontEnd[$key]["id"].')">';
+echo      '<th>'.$ArrayFrontEnd[$key]["id"].'</th>';
 echo      '<td>'.$ArrayFrontEnd[$key]["titulo"].'</td>';
 echo      '<td>'.$ArrayFrontEnd[$key]["autor"].'</td>';
 echo      '<td>'.$ArrayFrontEnd[$key]["ano"].'</td>';
@@ -98,17 +110,12 @@ echo      '<td>'.$ArrayFrontEnd[$key]["editora_id"].'</td>';
 //$varteste = $ArrayFrontEnd[$key]["titulo"];
 
  // var_dump($ArrayTeste);
-echo       '<td><form method="POST" action=excluir.php>'
-            .'<input type="text" name="id_form" value='
-        .$ArrayFrontEnd[$key]["id"].'>'.
-        '<button type="submit" class=" btn btn-danger form-control"><i class="fa fa-trash" aria-hidden="true"></i></button>'.
-        '</form</td>'; 
-echo    '</tr>';
+
   
   }
   
     
-    var_dump($varteste);  
+    
 echo '</tbody>';
 ?>
 </table>

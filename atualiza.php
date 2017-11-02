@@ -29,7 +29,9 @@ $varEditora = $_POST['editoraId_form'];
 
 $ReturnUpdateLivros = select::UpdateLivro($varId,$varTitulo,$varAutor,$varAno,$varPreco,$varQuantidade,$varTipo,$varEditora);
 
-var_dump($ReturnIUpdateLivros);
+
+var_dump($varId,$varTitulo);
+var_dump($ReturnUpdateLivros);
 //$obj->setAutor($vatTeste);
 //$obj->setTitulo($varcscsdc);
 

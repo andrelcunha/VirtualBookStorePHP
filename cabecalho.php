@@ -31,7 +31,7 @@ echo'
         <a class="nav-link" href="main.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="admin.php">Livros</a>
+        <a class="nav-link" href="livros.php">Livros</a>
       </li>
       <li class="nav-item">
         <a class="nav-link " href="editora.php">Editoras</a>
